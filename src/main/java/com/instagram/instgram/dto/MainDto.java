@@ -16,4 +16,12 @@ public class MainDto {
     private int likes = 0;
     private String createdAt;
 
+
+    public String getUserId() {
+        return "";
+    }
+
+    public String getCaption() {
+        return "";
+    }
 }

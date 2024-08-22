@@ -1,5 +1,6 @@
 package com.instagram.instgram.service.impl;
 
+import com.instagram.instgram.dto.PhotoDto;
 import com.instagram.instgram.entity.Main;
 import com.instagram.instgram.entity.Photo;
 import com.instagram.instgram.repository.MainRepository;
@@ -26,9 +27,9 @@ public class PhotoServiceImpl implements PhotoService {
     private final String uploadDir = "uploads/"; // 파일을 임시로 저장할 디렉토리 경로
 
     @Override
-    public Photo savePhoto(MultipartFile file, Long mainId) {
+    public PhotoDto uploadPhoto(MultipartFile file, Long mainId, String userId, String caption) {
         try {
-            // 파일을 서버에 저장 (여기서는 경로만 저장)
+            // 파일을 저장
             String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
             Path filePath = Paths.get(uploadDir + fileName);
             Files.createDirectories(filePath.getParent());
@@ -36,17 +37,31 @@ public class PhotoServiceImpl implements PhotoService {
 
             // Photo 엔티티 생성 및 저장
             Photo photo = new Photo();
-            photo.setImageUrl(filePath.toString()); // 실제 파일 경로를 저장
-            photo.setCaption(file.getOriginalFilename());
+            photo.setUserId(userId);
+            photo.setImageUrl(filePath.toString());
+            photo.setCaption(caption);
 
             // Main과 연결
             Main main = mainRepository.findById(mainId)
                     .orElseThrow(() -> new RuntimeException("Main post not found with id: " + mainId));
             photo.setMain(main);
 
-            return photoRepository.save(photo);
+            Photo savedPhoto = photoRepository.save(photo);
+
+            // PhotoDto로 변환하여 반환
+            return toDto(savedPhoto);
         } catch (IOException e) {
             throw new RuntimeException("Failed to store file " + file.getOriginalFilename(), e);
         }
+    }
+
+    private PhotoDto toDto(Photo photo) {
+        PhotoDto dto = new PhotoDto();
+        dto.setId(photo.getId());
+        dto.setUserId(photo.getUserId());
+        dto.setImageUrl(photo.getImageUrl());
+        dto.setCaption(photo.getCaption());
+        dto.setCreatedAt(photo.getCreatedAt());
+        return dto;
     }
 }
