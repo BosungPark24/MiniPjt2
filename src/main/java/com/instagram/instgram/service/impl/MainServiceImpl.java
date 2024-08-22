@@ -2,7 +2,7 @@ package com.instagram.instgram.service.impl;
 
 import com.instagram.instgram.dto.MainDto;
 import com.instagram.instgram.entity.Main;
-import com.instagram.instgram.mapper.MainMapper;
+import com.instagram.instgram.dto.mapper.MainMapper;
 import com.instagram.instgram.repository.MainRepository;
 import com.instagram.instgram.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -7,28 +7,22 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class Main {
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String contents;
-    private int likes = 0;
+    private String photoId;
+    private String userId;
+    private String text;
 
     @CreatedDate
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    public Main(Long id, String contents, int likes) {
-        this.contents = contents;
-
-    }
-
-    @OneToMany(mappedBy = "main", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @OrderBy("id asc")
-    private List<Comment> text;
+    @ManyToOne
+    private Main main;
 }

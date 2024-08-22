@@ -1,4 +1,4 @@
-package com.instagram.instgram.mapper;
+package com.instagram.instgram.dto.mapper;
 
 import com.instagram.instgram.dto.MainDto;
 import com.instagram.instgram.entity.Main;
