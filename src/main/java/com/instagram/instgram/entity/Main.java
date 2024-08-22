@@ -31,4 +31,7 @@ public class Main {
     @OneToMany(mappedBy = "main", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @OrderBy("id asc")
     private List<Comment> text;
+
+    @OneToMany(mappedBy = "main", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Photo> photos;
 }

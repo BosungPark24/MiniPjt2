@@ -12,6 +12,7 @@ public class MainDto {
     private Long id;
     private String contents;
     private List<CommentDto> text;
+    private List<PhotoDto> photos;
     private int likes = 0;
     private String createdAt;
 

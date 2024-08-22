@@ -3,6 +3,7 @@ package com.instagram.instgram.controller;
 import com.instagram.instgram.dto.MainDto;
 import com.instagram.instgram.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,6 +32,8 @@ public class MainController {
     public MainDto createPost(@RequestBody MainDto mainDto) {
         return mainService.createPost(mainDto);
     }
+
+
 
     // 게시글 수정
     @PutMapping("/update/{id}")
