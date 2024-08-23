@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class MainServiceImpl extends MainService {
+public class MainServiceImpl implements MainService {
 
     @Autowired
     private MainRepository mainRepository;

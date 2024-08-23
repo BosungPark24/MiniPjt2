@@ -1,7 +1,7 @@
 package com.instagram.instgram.dto;
 
-import com.instagram.instgram.entity.Comment;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class CommentDto {
     private Long id;
     private String photoId;
