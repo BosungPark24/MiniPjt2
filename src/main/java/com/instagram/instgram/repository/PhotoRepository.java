@@ -1,6 +1,5 @@
 package com.instagram.instgram.repository;
 
-import com.instagram.instgram.entity.Comment;
 import com.instagram.instgram.entity.Photo;
 import org.springframework.data.jpa.repository.JpaRepository;
 

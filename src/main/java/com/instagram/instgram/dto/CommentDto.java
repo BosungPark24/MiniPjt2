@@ -15,6 +15,4 @@ public class CommentDto {
     private String text;
     private String createdAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
     private int main;
-
-
 }

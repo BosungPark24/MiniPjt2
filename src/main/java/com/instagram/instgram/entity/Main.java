@@ -1,31 +1,35 @@
 package com.instagram.instgram.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 @NoArgsConstructor
+@Table (name = "main")
 public class Main {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "contents")
     private String contents;
+
+    @Column(name = "likes")
     private int likes = 0;
 
+    @Column(name = "created_at")
     @CreatedDate
     private LocalDateTime createdAt = LocalDateTime.now();
 
     public Main(Long id, String contents, int likes) {
         this.contents = contents;
-
     }
 
     @OneToMany(mappedBy = "main", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
